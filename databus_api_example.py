@@ -1,11 +1,7 @@
 import requests
 import json
-import os
 import hashlib
 import sys
-import mimetypes
-import traceback
-import pprint
 from datetime import datetime
 
 
