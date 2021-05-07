@@ -22,7 +22,7 @@ If you want to submit content via API you need to create the DataID yourself. An
 
 For this another two Steps are required:
 
-1. Fetching a Bearer Token from the Databus. This can be done by setting the following HTTP headers in a GET request:
+1. Fetching a Bearer Token from the Databus (URI: https://databus.dbpedia.org/auth/realms/databus/protocol/openid-connect/token). This can be done by setting the following HTTP headers in a GET request:
     - 'client_id': 'upload-api'
     - 'username': '$USER' with user being the accountname of your account (can be seeen in the URI e.g. https://databus.dbpedia.org/denis)
     - 'grant_type': 'password' 
