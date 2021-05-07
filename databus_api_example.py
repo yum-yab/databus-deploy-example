@@ -285,4 +285,4 @@ if __name__ == "__main__":
         description="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
     )
 
-    deploy_to_databus("XXXXXX", "XXXXXXXXXXXXXX", databus_group, databus_version)
+    deploy_to_databus(account_name, "password", databus_group, databus_version)
