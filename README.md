@@ -24,13 +24,13 @@ For this another two Steps are required:
 
 1. Fetching a Bearer Token from the Databus. This can be done by setting the following HTTP headers in a GET request:
     - 'client_id': 'upload-api'
-    - 'username': '<user>' with user being the accountname of your account (can be seeen in the URI e.g. https://databus.dbpedia.org/denis)
+    - 'username': '$USER' with user being the accountname of your account (can be seeen in the URI e.g. https://databus.dbpedia.org/denis)
     - 'grant_type': 'password' 
-    - 'password': '<password>' with the password of said Databus Account
+    - 'password': '$PASSWORD' with the password of said Databus Account
 
 Example with curl: ```TOKEN=$(curl -s -d 'client_id=upload-api' -d 'username=XXXXXX' -d 'password=XXXXXXXXXXX' -d 'grant_type=password' https://databus.dbpedia.org/auth/realms/databus/protocol/openid-connect/token | cut -d'"' -f 4)```.
 
-**NOTE**: A token has a lifettime of around 30 seconds.
+**NOTE**: A token has a lifetime of around 30 seconds.
 
 2. Using said bearer token for deploying to the Databus. Deploy requests are HTTP PUT requests with the following header:
     - 'Authorization': 'Bearer $TOKEN' with the Token being the string returned from **Step 1**
@@ -39,7 +39,7 @@ The Target URI depends here on the type of graph you want to deploy:
     - For the group its http://databus.dbpedia.org/$USER/$GROUP
     - For the version DataID it is http://databus.dbpedia.org/$USER/$GROUP/$ARTIFACT/$VERSION
 
-The Data is in both cases the fitting graph as JSON-LD. For testing the rgraph can be minified with a tool like [this one](https://www.minifyjson.org/).
+The Data is in both cases the fitting graph as JSON-LD. For testing with curl the graph can be minified with a tool like [this one](https://www.minifyjson.org/) and checked for validity with the [JSONLD playground](https://json-ld.org/playground/).
 
 **Example with curl:**```curl -H '{Authorization: Bearer $TOKEN}' -X PUT <GROUP-OR-VERSION-URI> -d 'DATAID_JSONLD_CONTENT'```
 
