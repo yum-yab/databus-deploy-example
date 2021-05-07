@@ -45,4 +45,4 @@ The Data is in both cases the fitting graph as JSON-LD. For testing with curl th
 
 ## Option 3: Using the python3 script
 
-A example implementation of using the API can be seen in `databus_api_example.py`. By modifying the veriables below line `if __name__ == "__main__":` a dataid can easily be generated and deployed, similar to the WebUI. the script consists of three classes:
+A example implementation of using the API can be seen in `databus_api_example.py`. By modifying the variables below line `if __name__ == "__main__":` a dataid can easily be generated and deployed, similar to the WebUI.
