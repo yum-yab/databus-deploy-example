@@ -157,15 +157,48 @@ class DataVersion:
         return json.dumps(data_id_dict)
 
 
+def deploy_to_databus(user: str, passwd: str, *databus_objects):
+    try:
+        data = {
+            "client_id": "upload-api",
+            "username": user,
+            "password": passwd,
+            "grant_type": "password",
+        }
+
+        print("Accessing new token...")
+        token_response = requests.post(
+            "https://databus.dbpedia.org/auth/realms/databus/protocol/openid-connect/token",
+            data=data,
+        )
+        print(f"Response: Status {token_response.status_code}; Text: {token_response.text}")
+
+        token = token_response.json()["access_token"]
+
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        sys.exit(1)
+
+    for dbobj in databus_objects:
+
+        headers = {"Authorization": "Bearer " + token}
+
+        print(f"Deploying {dbobj.get_target_uri()}")
+        response = requests.put(
+            dbobj.get_target_uri(), headers=headers, data=dbobj.to_jsonld()
+        )
+        print(f"Response: Status {response.status_code}; Text: {response.text}")
+
+
 if __name__ == "__main__":
 
     account_name = "denis"
 
-    group = "another-testgroup"
+    group = "general"
 
     artifact = "testartifact"
 
-    version = "2021-05-07"
+    version = "2021-05-09"
 
     title = "Test Title"
 
