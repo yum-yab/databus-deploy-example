@@ -86,7 +86,7 @@ class DataVersion:
         for dbfile in self.databus_files:
             for key, value in dbfile.cvs.items():
 
-                if not key in distinct_cv_definitions:
+                if key not in distinct_cv_definitions:
                     distinct_cv_definitions[key] = {
                         "@type": "rdf:Property",
                         "@id": f"dataid-cv:{key}",
@@ -192,19 +192,20 @@ def deploy_to_databus(user: str, passwd: str, *databus_objects):
 
 if __name__ == "__main__":
 
+    # account for publishing the dataset, password required
     account_name = "denis"
 
-    group = "general"
+    group = "lod-geoss-example"
 
-    artifact = "testartifact"
+    artifact = "api-example"
 
-    version = "2021-05-09"
+    version = "2021-05-10"
 
-    title = "Test Title"
+    title = "API example"
 
     publisher = "https://yum-yab.github.io/webid.ttl#this"
 
-    label = "Test Label"
+    label = "API example"
 
     comment = "This is a short comment about the test."
 
@@ -212,22 +213,12 @@ if __name__ == "__main__":
 
     description = "A bit longer description of the dataset."
 
-    license = "http://this.is.a.license.uri.com/test"
+    license = "http://creativecommons.org/licenses/by/4.0/"
 
     files = [
         DatabusFile(
-            "https://yum-yab.github.io/data/databus-api-test/first/pizza-ont.owl",
-            {"type": "ontology"},
-            "owl",
-        ),
-        DatabusFile(
-            "https://yum-yab.github.io/data/databus-api-test/first/Sample500.csv",
-            {"type": "randomData"},
-            "csv",
-        ),
-        DatabusFile(
             "https://openenergy-platform.org/api/v0/schema/supply/tables/wind_turbine_library/rows/",
-            {"type": "turbineData", "extra": "external"},
+            {"type": "turbineData"},
             "json",
         ),
     ]
@@ -250,11 +241,11 @@ if __name__ == "__main__":
     databus_group = DataGroup(
         account_name=account_name,
         id=group,
-        label="Test Group",
-        title="Test Group",
-        abstract="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
-        comment="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
-        description="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+        label="LOD GEOSS Example",
+        title="LOD GEOSS Example",
+        abstract="Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
+        comment="Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
+        description="Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
     )
 
     deploy_to_databus(
