@@ -41,7 +41,7 @@ The Target URI depends here on the type of graph you want to deploy:
 
 The Data is in both cases the fitting graph as JSON-LD. For testing with curl the graph can be minified with a tool like [this one](https://www.minifyjson.org/) and checked for validity with the [JSONLD playground](https://json-ld.org/playground/).
 
-**Example with curl:**```curl -H '{Authorization: Bearer $TOKEN}' -X PUT <GROUP-OR-VERSION-URI> -d 'DATAID_JSONLD_CONTENT'```
+**Example with curl:**```curl -v -X PUT <TARGET-URI> -H "Authorization: Bearer $TOKEN" -d 'DATAID_AS_JSON_LD'```
 
 ## Option 3: Using the python3 script
 
